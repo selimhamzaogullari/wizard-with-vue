@@ -5,11 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    page: 4
   },
   mutations: {
+    setPage(state, pageNumber) {
+      state.page = pageNumber
+    }
   },
   actions: {
-  },
-  modules: {
+    updatePage({commit}, pageNumber) {
+      commit('setPage', pageNumber)
+    },
   }
 })

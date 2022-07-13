@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="$emit('click', $event)" :class="[withBorder ? 'border' : 'bg']">
+    <button @click="$emit('click', $event)" :class="[withBorder ? 'border' : 'bg', width]">
       <slot />
     </button>
   </div>
@@ -17,6 +17,10 @@ export default {
     withBorder: {
       type: Boolean,
       default: false
+    },
+    width: {
+      type: String,
+      default: 'normal'
     }
   }
 }
@@ -30,9 +34,13 @@ export default {
     font-size: var(--size-font);
     border-radius: 3px;
     min-width: 150px;
+    cursor: pointer;
   }
   button.bg {
     background-color: var(--color-font);
     color: var(--color-white);
+  }
+  button.large {
+    min-width: 300px
   }
 </style>

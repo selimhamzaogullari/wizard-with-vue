@@ -92,6 +92,6 @@ export default {
     padding: 4px 6px;
   }
   .select-box-content .item.active {
-    background-color: var(--color-light-grey);
+    background-color: var(--color-grey);
   }
 </style>

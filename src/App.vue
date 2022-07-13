@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <Button>Text</Button>
-    <Input type="radio"/>
-    <Select id="select-1" :data="[{name: 'selim', value: 1}, {name: 'besim', value: 2}, {name: 'adem', value: 3}]"/>
+    <Wizard1 v-if="page === 1"/>
+    <WizardError v-if="page === 4"/>
   </div>
 </template>
 
@@ -11,13 +10,21 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Select from "@/components/Select";
+import Wizard1 from "@/pages/wizard-1";
+import {mapState} from "vuex";
+import WizardError from "@/pages/wizard-error";
 export default {
   name: 'App',
   components: {
+    WizardError,
+    Wizard1,
     Select,
     Input,
     Button
-  }
+  },
+  computed: {
+    ...mapState(['page'])
+  },
 }
 </script>
 
@@ -28,8 +35,10 @@ export default {
   --color-font: #333333;
   --color-white: #ffffff;
   --color-border: #a4a4a4;
-  --color-light-grey: #eeeeee;
-  --size-font: 16px
+  --color-grey: #dfdfdf;
+  --color-light-grey: #fafafa;
+  --size-font: 16px;
+  --size-font-title: 26px;
 }
 body {
   margin: 0;
@@ -39,6 +48,27 @@ body {
   font-size: var(--size-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.wizard {
+  width: 700px;
+  background-color: var(--color-light-grey);
+  height: 350px;
+  border-radius: 3px;
+  margin: 7% auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wizard .description {
+  margin-bottom: 20px;
+  line-height: 20px;
+}
+.wizard .title {
+  font-size: var(--size-font-title);
+  font-weight: bold;
+  margin-bottom: 26px;
 }
 
 </style>
