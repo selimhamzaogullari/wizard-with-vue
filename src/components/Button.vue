@@ -40,7 +40,15 @@ export default {
     background-color: var(--color-font);
     color: var(--color-white);
   }
+  button.border {
+    background-color: transparent;
+    padding: 6px 13px;
+    border: 2px solid var(--color-font);
+  }
   button.large {
-    min-width: 300px
+    min-width: 250px
+  }
+  button.small {
+    min-width: 75px
   }
 </style>

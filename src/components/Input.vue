@@ -1,10 +1,13 @@
 <template>
     <div>
-      <label v-if="type === 'radio'" class="label-content"> Text
-        <input type="radio" name="radio">
+      <label v-if="type === 'radio'" class="label-radio"> {{labelName}}
+        <input type="radio" :name="radioName" :checked="checked">
         <span class="checked"></span>
       </label>
-      <input type="text" v-else/>
+      <template v-else>
+        <label class="label-text">{{labelName}}</label>
+        <input type="text" @input="handleInput"/>
+      </template>
     </div>
 </template>
 
@@ -15,6 +18,29 @@ export default {
     type: {
       type: String,
       default: 'text'
+    },
+    labelName: {
+      type: String,
+      default: ''
+    },
+    radioName: {
+      type: String,
+      default: ''
+    },
+    checked: {
+      type: Boolean,
+      default: false
+    },
+  },
+  data() {
+    return {
+      text: ''
+    }
+  },
+  methods: {
+    handleInput(e) {
+      this.text = e.target.value
+      this.$emit('input', this.text)
     }
   }
 }
@@ -25,7 +51,7 @@ export default {
   input {
     width: 200px;
     border: 1px solid var(--color-border);
-    padding: 10px 6px;
+    padding: 10px;
     font-family: 'Roboto', sans-serif;
     font-size: var(--size-font);
     border-radius: 3px;
@@ -33,8 +59,12 @@ export default {
   input:focus {
     outline: none;
   }
+  .label-text {
+    display: block;
+    margin-bottom: 10px;
+  }
   /* Radio */
-  .label-content {
+  .label-radio {
     display: block;
     position: relative;
     padding-left: 25px;
@@ -60,10 +90,10 @@ export default {
     background-color: #eee;
     border-radius: 50%;
   }
-  .label-content:hover input ~ .checked {
+  .label-radio:hover input ~ .checked {
     background-color: #ccc;
   }
-  .label-content input:checked ~ .checked {
+  .label-radio input:checked ~ .checked {
     background-color: #2196F3;
   }
   .checked:after {
@@ -71,10 +101,10 @@ export default {
     position: absolute;
     display: none;
   }
-  .label-content input:checked ~ .checked:after {
+  .label-radio input:checked ~ .checked:after {
     display: block;
   }
-  .label-content .checked:after {
+  .label-radio .checked:after {
     top: 5px;
     left: 5px;
     width: 10px;

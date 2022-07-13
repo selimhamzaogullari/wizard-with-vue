@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Wizard1 v-if="page === 1"/>
+    <Wizard2 v-if="page === 2"/>
     <WizardError v-if="page === 4"/>
   </div>
 </template>
@@ -13,9 +14,11 @@ import Select from "@/components/Select";
 import Wizard1 from "@/pages/wizard-1";
 import {mapState} from "vuex";
 import WizardError from "@/pages/wizard-error";
+import Wizard2 from "@/pages/wizard-2";
 export default {
   name: 'App',
   components: {
+    Wizard2,
     WizardError,
     Wizard1,
     Select,
@@ -65,7 +68,7 @@ body {
   margin-bottom: 20px;
   line-height: 20px;
 }
-.wizard .title {
+.title {
   font-size: var(--size-font-title);
   font-weight: bold;
   margin-bottom: 26px;
