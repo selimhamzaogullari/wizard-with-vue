@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <Wizard1 v-if="page === 1"/>
-    <Wizard2 v-if="page === 2"/>
-    <WizardError v-if="page === 4"/>
+    <Wizard1 v-show="page === 1"/>
+    <Wizard2 v-show="page === 2"/>
+    <Wizard3 v-show="page === 3"/>
+    <WizardError v-show="page === 4"/>
   </div>
 </template>
 
@@ -15,9 +16,11 @@ import Wizard1 from "@/pages/wizard-1";
 import {mapState} from "vuex";
 import WizardError from "@/pages/wizard-error";
 import Wizard2 from "@/pages/wizard-2";
+import Wizard3 from "@/pages/wizard-3";
 export default {
   name: 'App',
   components: {
+    Wizard3,
     Wizard2,
     WizardError,
     Wizard1,
@@ -42,6 +45,7 @@ export default {
   --color-light-grey: #fafafa;
   --size-font: 16px;
   --size-font-title: 26px;
+  --size-font-title-sm: 20px;
 }
 body {
   margin: 0;
@@ -72,6 +76,18 @@ body {
   font-size: var(--size-font-title);
   font-weight: bold;
   margin-bottom: 26px;
+}
+
+.title-sm {
+  font-size: var(--size-font-title-sm);
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 </style>

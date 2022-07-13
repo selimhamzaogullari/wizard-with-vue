@@ -49,6 +49,7 @@ export default {
     min-width: 250px
   }
   button.small {
-    min-width: 75px
+    min-width: 75px;
+    margin: 0 10px;
   }
 </style>

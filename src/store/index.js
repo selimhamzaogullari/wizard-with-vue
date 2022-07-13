@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    page: 2,
+    page: 1,
     allData: {},
   },
   mutations: {
@@ -13,7 +13,8 @@ export default new Vuex.Store({
       state.page = pageNumber
     },
     setData(state, data) {
-      state.data = data
+      console.log(data)
+      state.allData = data
     }
   },
   actions: {

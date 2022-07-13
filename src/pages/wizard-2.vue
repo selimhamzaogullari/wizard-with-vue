@@ -35,7 +35,6 @@ export default {
   components: {Button, Select, Input},
   computed: {
     totalPrice() {
-      console.log('asdasd')
       return 10 * this.data.age * this.data.country.rate
     }
   },
@@ -58,14 +57,13 @@ export default {
     ...mapActions(['updatePage', 'updateAllData']),
     nextPage() {
       this.updatePage(this.data.age >= 100 ? 4 : 3)
+      this.updateAllData({...this.data,
+        price: this.totalPrice + (this.data.package === 'Standard' ? 0 :
+            (this.data.package === 'Safe' ? this.totalPrice / 2 : this.totalPrice / 4 * 3))})
     },
     prevPage() {
       this.updatePage(1)
     },
-  },
-  destroyed() {
-    this.updateAllData({...this.data,
-      price: this.totalPrice + (this.data.package === 'Standard' ? 0 : (this.data.package === 'Safe' ? this.totalPrice / 2 : this.totalPrice / 4 * 3))})
   }
 }
 </script>
@@ -108,13 +106,5 @@ export default {
   }
   .radio-btn {
     margin: 20px 0;
-  }
-  .btn-group {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  ::v-deep button.small {
-    margin: 0 10px!important;
   }
 </style>
